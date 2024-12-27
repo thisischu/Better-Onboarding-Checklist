@@ -23,15 +23,12 @@ pip install pandas openpyxl
 
 ## How to Use
 
-1. **Prepare your input file** with a sheet named "FTE Hire" containing these columns:
+1. **Prepare your input file** Download a copy of the FTE Sheet and upload it to VScode: 
    - `Candidate`, `Personal Email`, `Better Email`, `Job`, `Department`, `Start Date`, `TimeZone`.
 
-2. **Set the start date** in `config.py` to filter data (format: `MM/DD/YYYY`).
+3. **Set the start date** in `config.py` to filter data (format: `MM/DD/YYYY`).
 
-3. **Run the script**: Execute `main.py`. It will create a new sheet in the output file based on the start date.
+4. **Run the script**: Execute `main.py`. It will create a new sheet in the output file based on the start date.
 
-4. **Check the output**: The new sheet will be saved in the `output_file` and will be opened automatically.
+5. **Check the output**: The new sheet will be saved in the `output_file` and will be opened automatically.
 
----
-
-This version keeps it short and to the point, focusing on what to do and how to run the script.
