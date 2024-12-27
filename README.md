@@ -1,7 +1,3 @@
-Here’s a simplified version of the documentation for the GitHub README:
-
----
-
 # Excel Sheet Automation Script
 
 This script processes an Excel file to generate a new sheet with filtered and formatted data for new hires.
