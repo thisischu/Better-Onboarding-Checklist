@@ -30,7 +30,7 @@ def generate_neo_email_alias(full_name):
         return ""  
     first_initial = names[0][0].lower()  # Get the first letter of the first name
     last_name = names[-1].lower()  # Use full last name
-    email_alias = f"{first_initial}_{last_name}@neopoweredbybetter.com"
+    email_alias = f"{first_initial}{last_name}@neopoweredbybetter.com"
     return email_alias
 
 # Function to extract username (remove "@better.com")
@@ -41,7 +41,7 @@ def extract_username(work_email):
 
 # Main function to create the output Excel sheet
 def create_excel(start_date, input_df, output_file):
-    # Filter data based on the specified start date
+   
     start_date = pd.to_datetime(start_date, format="%m/%d/%Y", errors='coerce')
     filtered_data = input_df[pd.to_datetime(input_df['Start Date'], errors='coerce') == start_date]
 
@@ -60,12 +60,11 @@ def create_excel(start_date, input_df, output_file):
         'Title': selected_data['Job'],
         'Department': selected_data['Department'],
         'Front Setup Needed': selected_data['Department'].apply(lambda dept: 'Yes' if dept == 'SPOC' else 'N/A'),
-        #'Email Alias Paragraph': selected_data['Department'].apply(lambda dept: 'This is your External Email Alias, please do not refer to this Alias email address until we meet in the IT Onboarding Session:' if dept == 'SPOC' else ''),
         'Email Alias': selected_data.apply(lambda row: generate_spoc_email_alias(row['Candidate']) if row['Department'] == 'SPOC' else 
-                                           generate_neo_email_alias(row['Candidate']) if row['Department'] == 'Neo' else 'N/A', axis=1),  # Generate email alias for SPOC and Neo, or 'N/A'
+                                           generate_neo_email_alias(row['Candidate']) if row['Department'] == 'Neo' else 'N/A', axis=1), 
         'Location': selected_data['Office Location (for OL)'],
         'Start Date': pd.to_datetime(selected_data['Start Date'], errors='coerce').dt.strftime('%B %d, %Y'), 
-        'Start Time': selected_data['TimeZone'].apply(lambda tz: '10:30 AM EST' if 'EST' in str(tz) else '12:30 AM PST' if 'PST' in str(tz) else ''),  # Set time based on TimeZone
+        'Start Time': selected_data['TimeZone'].apply(lambda tz: '10:30 AM EST' if 'EST' in str(tz) else '12:30 AM PST' if 'PST' in str(tz) else ''),  
         'Monitor FedEx Tracking': '',
         'WFH Bundle FedEx Tracking': '', 
         'Laptop FedEx Tracking': '',
